@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+service UserService {
+    rpc GetUserById (BPPUserById) returns (BPPUser);
+    rpc FilterUsers (BPPUserFilters) returns (BPPUsers);
+
+}
+
+message BPPUser {
+    string channelId = 1;
+    string displayName = 2;
+    double hours = 3;
+    int64 money = 4;
+}
+
+message BPPUsers {
+    repeated BPPUser BPPUser = 1;
+}
+
+message BPPUserById {
+    string channelId = 1;
+}
+
+message BPPUserFilter {
+    string channelId = 1;
+    string name = 2;
+    double hours = 3;
+    int64 money = 4;
+}
+
+message BPPUserFilters {
+    repeated BPPUserFilter filters = 1;
+}

@@ -1,0 +1,31 @@
+syntax = "proto3";
+import "byersplusplus.proto";
+import "google/protobuf/timestamp.proto";
+package youtubeservice;
+
+service YouTubeService {
+    rpc SendMessage (MessageEnvelope) returns (Empty);
+    rpc SubscribeMessages (Empty) returns (stream YouTubeChatMessage);
+    rpc GetMessages(GetMessageRequest) returns (YouTubeChatMessages);
+}
+
+message MessageEnvelope {
+    string message = 1;
+}
+
+message YouTubeChatMessage {
+    string message = 1;
+    string channelId = 2;
+    string displayName = 3;
+    google.protobuf.Timestamp sentAtTimestamp = 4;
+    google.protobuf.Timestamp receivedAtTimestamp = 5;
+}
+
+message YouTubeChatMessages {
+    repeated YouTubeChatMessage messages = 1;
+}
+
+message GetMessageRequest {
+    int32 offset = 1;
+    int32 limit = 2;
+}
