@@ -1,16 +1,18 @@
 syntax = "proto3";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
 package youtubeservice;
 
 service YouTubeService {
-    rpc SendMessage (MessageEnvelope) returns (google.protobuf.Empty);
+    rpc SendMessage (google.protobuf.StringValue) returns (google.protobuf.Empty);
     rpc SubscribeMessages (google.protobuf.Empty) returns (stream YouTubeChatMessage);
     rpc GetMessages(GetMessageRequest) returns (YouTubeChatMessages);
+    rpc Authenticate(google.protobuf.StringValue) returns (google.protobuf.BoolValue);
 }
 
-message MessageEnvelope {
-    string message = 1;
+message AuthenticateRequest {
+    string code = 1;
 }
 
 message YouTubeChatMessage {
