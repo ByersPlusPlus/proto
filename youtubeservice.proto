@@ -1,11 +1,11 @@
 syntax = "proto3";
-import "byersplusplus.proto";
 import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
 package youtubeservice;
 
 service YouTubeService {
-    rpc SendMessage (MessageEnvelope) returns (byersplusplus.Empty);
-    rpc SubscribeMessages (byersplusplus.Empty) returns (stream YouTubeChatMessage);
+    rpc SendMessage (MessageEnvelope) returns (google.protobuf.Empty);
+    rpc SubscribeMessages (google.protobuf.Empty) returns (stream YouTubeChatMessage);
     rpc GetMessages(GetMessageRequest) returns (YouTubeChatMessages);
 }
 
