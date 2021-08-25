@@ -8,7 +8,6 @@ service YouTubeService {
     rpc SendMessage (google.protobuf.StringValue) returns (google.protobuf.Empty);
     rpc SubscribeMessages (google.protobuf.Empty) returns (stream YouTubeChatMessage);
     rpc GetMessages(GetMessageRequest) returns (YouTubeChatMessages);
-    rpc Authenticate(google.protobuf.StringValue) returns (google.protobuf.BoolValue);
 }
 
 message AuthenticateRequest {
