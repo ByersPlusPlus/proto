@@ -1,4 +1,5 @@
 syntax = "proto3";
+package userservice;
 
 service UserService {
     rpc GetUserById (BPPUserById) returns (BPPUser);
