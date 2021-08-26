@@ -20,6 +20,7 @@ message YouTubeChatMessage {
     string displayName = 3;
     google.protobuf.Timestamp sentAtTimestamp = 4;
     google.protobuf.Timestamp receivedAtTimestamp = 5;
+    string message_id = 6;
 }
 
 message YouTubeChatMessages {
