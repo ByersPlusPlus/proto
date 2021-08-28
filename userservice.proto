@@ -5,6 +5,7 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
 
 service UserService {
+    // Users
     rpc GetUserById (BPPUserById) returns (BPPUser);
     rpc FilterUsers (BPPUserFilters) returns (BPPUsers);
     rpc UpdateUser (BPPUser) returns (BPPUser);
@@ -12,28 +13,81 @@ service UserService {
     rpc DeleteUser (BPPUser) returns (google.protobuf.Empty);
     rpc DeleteUsers (BPPUsers) returns (google.protobuf.Empty);
     rpc CreateUser(BPPUser) returns (BPPUser);
+    // Groups
+    rpc GetGroups (google.protobuf.Empty) returns (BPPGroups);
+    rpc UpdateGroup (BPPGroup) returns (BPPGroup);
+    rpc UpdateGroups (BPPGroups) returns (BPPGroups);
+    rpc DeleteGroup (BPPGroup) returns (google.protobuf.Empty);
+    rpc DeleteGroups (BPPGroups) returns (google.protobuf.Empty);
+    rpc CreateGroup (CreateBPPGroup) returns (BPPGroup);
+    // Ranks
+    rpc GetRanks (google.protobuf.Empty) returns (BPPRanks);
+    rpc UpdateRank (BPPRank) returns (BPPRank);
+    rpc UpdateRanks (BPPRanks) returns (BPPRanks);
+    rpc DeleteRank (BPPRank) returns (google.protobuf.Empty);
+    rpc DeleteRanks (BPPRanks) returns (google.protobuf.Empty);
+    rpc CreateRank (CreateBPPRank) returns (BPPRank);
+}
+
+message BPPRanks {
+    repeated BPPRank ranks = 1;
+    int32 count = 2;
+}
+
+message CreateBPPRank {
+    string rank_name = 1;
+    int32 rank_sorting = 2;
+    google.protobuf.Duration hour_requirement = 3;
+}
+
+message BPPRank {
+    int32 rank_id = 1;
+    string rank_name = 2;
+    int32 rank_sorting = 3;
+    google.protobuf.Duration hour_requirement = 4;
+}
+
+message BPPGroups {
+    repeated BPPGroup groups = 1;
+    int32 count = 2;
+}
+
+message CreateBPPGroup {
+    string group_name = 1;
+    repeated string permissions = 2;
+    int32 bonus_payout = 3;
+}
+
+message BPPGroup {
+    int32 group_id = 1;
+    string group_name = 2;
+    repeated string permissions = 3;
+    int32 bonus_payout = 4;
 }
 
 message BPPUser {
-    string channelId = 1;
-    string displayName = 2;
+    string channel_id = 1;
+    string display_name = 2;
     google.protobuf.Duration hours = 3;
     int64 money = 4;
     google.protobuf.Timestamp first_seen_at = 5;
     google.protobuf.Timestamp last_seen_at =  6;
+    repeated BPPGroup groups = 7;
+    repeated string permissions = 8;
 }
 
 message BPPUsers {
-    repeated BPPUser BPPUser = 1;
+    repeated BPPUser users = 1;
+    int32 count = 2;
 }
 
 message BPPUserById {
-    string channelId = 1;
+    string channel_id = 1;
 }
 
 message BPPUserFilter {
     oneof filter {
-        string channelId = 1;
+        string channel_id = 1;
         string name = 2;
         double hours = 3;
         int64 money = 4;
