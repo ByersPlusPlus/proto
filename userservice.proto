@@ -3,6 +3,7 @@ package userservice;
 import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
+import "google/protobuf/wrappers.proto";
 
 service UserService {
     // Users
@@ -27,6 +28,13 @@ service UserService {
     rpc DeleteRank (BPPRank) returns (google.protobuf.Empty);
     rpc DeleteRanks (BPPRanks) returns (google.protobuf.Empty);
     rpc CreateRank (CreateBPPRank) returns (BPPRank);
+    // Others
+    rpc UserHasPermission (UserPermissionCheck) returns (google.protobuf.BoolValue);
+}
+
+message UserPermissionCheck {
+    string channel_id = 1;
+    string permission = 2;
 }
 
 message BPPRanks {
