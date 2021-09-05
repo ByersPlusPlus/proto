@@ -121,7 +121,7 @@ message BPPUserFilter {
     oneof filter {
         string channel_id = 1;
         string name = 2;
-        double hours = 3;
+        int64 hours = 3;
         int64 money = 4;
     }
 }
