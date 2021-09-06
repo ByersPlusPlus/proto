@@ -105,6 +105,7 @@ message BPPGroup {
     string group_name = 2;
     repeated Permission permissions = 3;
     int32 bonus_payout = 4;
+    int32 group_sorting = 5;
 }
 
 message BPPUser {
