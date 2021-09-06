@@ -28,8 +28,17 @@ service UserService {
     rpc DeleteRank (BPPRankId) returns (google.protobuf.Empty);
     rpc DeleteRanks (BPPRankIds) returns (google.protobuf.Empty);
     rpc CreateRank (CreateBPPRank) returns (BPPRank);
-    // Others
+    // Permissions
     rpc UserHasPermission (UserPermissionCheck) returns (google.protobuf.BoolValue);
+    rpc UserGrantPermission (Permission) returns (google.protobuf.Empty);
+    rpc UserRevokePermisison (Permission) returns (google.protobuf.Empty);
+    rpc GroupGrantPermission (Permission) returns (google.protobuf.Empty);
+    rpc GroupRevokePermission (Permission) returns (google.protobuf.Empty);
+}
+
+message Permission {
+    string permission = 1;
+    bool granted = 2;
 }
 
 message BPPRankIds {
@@ -86,14 +95,14 @@ message BPPGroups {
 
 message CreateBPPGroup {
     string group_name = 1;
-    repeated string permissions = 2;
+    repeated Permission permissions = 2;
     int32 bonus_payout = 3;
 }
 
 message BPPGroup {
     int32 group_id = 1;
     string group_name = 2;
-    repeated string permissions = 3;
+    repeated Permission permissions = 3;
     int32 bonus_payout = 4;
 }
 
@@ -105,7 +114,8 @@ message BPPUser {
     google.protobuf.Timestamp first_seen_at = 5;
     google.protobuf.Timestamp last_seen_at =  6;
     repeated BPPGroup groups = 7;
-    repeated string permissions = 8;
+    repeated Permission permissions = 8;
+    string rank = 9;
 }
 
 message BPPUsers {
