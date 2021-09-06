@@ -68,6 +68,7 @@ message BPPUserId {
 message UserPermissionCheck {
     string channel_id = 1;
     string permission = 2;
+    bool granted_default = 3;
 }
 
 message BPPRanks {
