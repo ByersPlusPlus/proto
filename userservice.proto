@@ -98,6 +98,7 @@ message CreateBPPGroup {
     string group_name = 1;
     repeated Permission permissions = 2;
     int32 bonus_payout = 3;
+    int32 group_sorting = 4;
 }
 
 message BPPGroup {
