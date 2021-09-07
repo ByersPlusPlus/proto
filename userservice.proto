@@ -30,10 +30,20 @@ service UserService {
     rpc CreateRank (CreateBPPRank) returns (BPPRank);
     // Permissions
     rpc UserHasPermission (UserPermissionCheck) returns (google.protobuf.BoolValue);
-    rpc UserGrantPermission (Permission) returns (google.protobuf.Empty);
-    rpc UserRevokePermisison (Permission) returns (google.protobuf.Empty);
-    rpc GroupGrantPermission (Permission) returns (google.protobuf.Empty);
-    rpc GroupRevokePermission (Permission) returns (google.protobuf.Empty);
+    rpc UserGrantPermission (UserPermission) returns (google.protobuf.Empty);
+    rpc UserRevokePermisison (UserPermission) returns (google.protobuf.Empty);
+    rpc GroupGrantPermission (GroupPermission) returns (google.protobuf.Empty);
+    rpc GroupRevokePermission (GroupPermission) returns (google.protobuf.Empty);
+}
+
+message GroupPermission {
+    int32 group_id = 1;
+    string permission = 2;
+}
+
+message UserPermission {
+    string channel_id = 1;
+    string permission = 2;
 }
 
 message Permission {
