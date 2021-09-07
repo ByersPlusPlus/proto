@@ -123,7 +123,7 @@ message BPPUser {
     string channel_id = 1;
     string display_name = 2;
     google.protobuf.Duration hours = 3;
-    int64 money = 4;
+    double money = 4;
     google.protobuf.Timestamp first_seen_at = 5;
     google.protobuf.Timestamp last_seen_at =  6;
     repeated BPPGroup groups = 7;
@@ -145,7 +145,7 @@ message BPPUserFilter {
         string channel_id = 1;
         string name = 2;
         int64 hours = 3;
-        int64 money = 4;
+        double money = 4;
     }
 }
 
