@@ -1,0 +1,27 @@
+syntax = "proto3";
+package commandservice;
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+
+service CommandService {
+    rpc GetCommands (google.protobuf.Empty) returns (CommandList);
+    rpc GetCommand (google.protobuf.StringValue) returns (Command);
+    rpc MockCommand (ExecutionRequest) returns (google.protobuf.StringValue);
+}
+
+message ExecutionRequest {
+    string command = 1;
+    string message = 2;
+}
+
+message CommandList {
+    repeated Command commands = 1;
+    int32 count = 2;
+}
+
+message Command {
+    string name = 1;
+    string aliases = 2;
+    string description = 3;
+    string library = 4;
+}
