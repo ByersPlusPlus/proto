@@ -21,7 +21,7 @@ message CommandList {
 
 message Command {
     string name = 1;
-    string aliases = 2;
+    repeated string aliases = 2;
     string description = 3;
     string library = 4;
 }
