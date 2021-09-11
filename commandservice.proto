@@ -6,12 +6,11 @@ import "google/protobuf/wrappers.proto";
 service CommandService {
     rpc GetCommands (google.protobuf.Empty) returns (CommandList);
     rpc GetCommand (google.protobuf.StringValue) returns (Command);
-    rpc MockCommand (ExecutionRequest) returns (google.protobuf.StringValue);
+    rpc MockCommand (ExecutionRequest) returns (google.protobuf.BoolValue);
 }
 
 message ExecutionRequest {
-    string command = 1;
-    string message = 2;
+    string message = 1;
 }
 
 message CommandList {
