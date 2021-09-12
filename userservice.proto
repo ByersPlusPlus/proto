@@ -15,6 +15,7 @@ service UserService {
     rpc DeleteUsers (BPPUserIds) returns (google.protobuf.Empty);
     rpc CreateUser(BPPUser) returns (BPPUser);
     // Groups
+    rpc GetGroup (google.protobuf.Int32Value) returns (BPPGroup);
     rpc GetGroups (google.protobuf.Empty) returns (BPPGroups);
     rpc UpdateGroup (BPPGroup) returns (BPPGroup);
     rpc UpdateGroups (BPPGroups) returns (BPPGroups);
@@ -22,6 +23,7 @@ service UserService {
     rpc DeleteGroups (BPPGroupIds) returns (google.protobuf.Empty);
     rpc CreateGroup (CreateBPPGroup) returns (BPPGroup);
     // Ranks
+    rpc GetRank (google.protobuf.Int32Value) returns (BPPRank);
     rpc GetRanks (google.protobuf.Empty) returns (BPPRanks);
     rpc UpdateRank (BPPRank) returns (BPPRank);
     rpc UpdateRanks (BPPRanks) returns (BPPRanks);
