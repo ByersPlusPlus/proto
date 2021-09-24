@@ -5,8 +5,10 @@ import "google/protobuf/wrappers.proto";
 package youtubeservice;
 
 service YouTubeService {
+    // POST /youtube/send [YouTube]
     rpc SendMessage (google.protobuf.StringValue) returns (google.protobuf.Empty);
     rpc SubscribeMessages (google.protobuf.Empty) returns (stream YouTubeChatMessage);
+    // POST /youtube/messages [YouTube]
     rpc GetMessages(GetMessageRequest) returns (YouTubeChatMessages);
 }
 

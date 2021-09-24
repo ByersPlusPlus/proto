@@ -4,8 +4,9 @@ import "google/protobuf/empty.proto";
 import "google/protobuf/wrappers.proto";
 
 service CommandService {
-    // Commands
+    // GET /commands [Commands]
     rpc GetCommands (google.protobuf.Empty) returns (CommandList);
+    // GET /commands/{command:string} [Commands]
     rpc GetCommand (google.protobuf.StringValue) returns (Command);
     
 }
